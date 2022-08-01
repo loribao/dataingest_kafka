@@ -1,0 +1,5 @@
+docker/data
+pub/**/node_modules
+sub/**/node_modules
+pub/**/dist
+pub/**/.secret.env
