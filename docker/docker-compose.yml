@@ -46,7 +46,7 @@ services:
       broker: kafka
       broker_port: 29092
       topic: 'framereceived'
-      url_page: "https://blaze.com/pt/games/crash"
+      url_page: "#"
     networks:
       - broker-kafka
     depends_on:
