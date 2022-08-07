@@ -2008,23 +2008,6 @@ json-parse-even-better-errors@^2.3.0:
   resolved "https://registry.yarnpkg.com/json-parse-even-better-errors/-/json-parse-even-better-errors-2.3.1.tgz#7c47805a94319928e05777405dc12e1f7a4ee02d"
   integrity sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==
 
-json-string-formatter@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/json-string-formatter/-/json-string-formatter-1.0.1.tgz#ba4baaa74d4a5d8856bd762ec5ec0174b2e2f936"
-  integrity sha512-lnezZ3SUv1V/4yx4hGx0TD+Yufp9fqsJ+5G2wKI7vcvdNBcHgwaDwtVsJXc6U6LTzkNZc0KSGzA+tXzLjkb5sg==
-
-json-stringify-safe@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
-  integrity sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==
-
-json-stringify@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/json-stringify/-/json-stringify-1.0.0.tgz#1e53241a8099eb21fff2a2258677796de47a7153"
-  integrity sha512-cbfUVp5IMPNX2+WMSfHoQkpsa9ALbvNE6Mqpjrs7DEC7UwllBA2Rhil9lm6xqup9e3lC0zj3boIW5Cav48CGTQ==
-  dependencies:
-    json-stringify-safe "^5.0.1"
-
 json5@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"

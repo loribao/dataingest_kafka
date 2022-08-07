@@ -3,3 +3,5 @@ pub/**/node_modules
 sub/**/node_modules
 pub/**/dist
 pub/**/.secret.env
+sub/**/_build
+docker/docker-compose.yml

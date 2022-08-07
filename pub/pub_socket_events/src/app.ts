@@ -2,7 +2,7 @@ import { Producer } from 'kafkajs';
 import { chromium } from 'playwright'
 import logger from './configs/logger';
 
-const app = async (producer: Producer,topic:string ,url_page: string) => {
+const app = async (producer: Producer, topic: string, url_page: string) => {
     const browser = await chromium.launch({ headless: true });
     let page = await browser.newPage();
     page.on('websocket', ws => {
@@ -10,8 +10,10 @@ const app = async (producer: Producer,topic:string ,url_page: string) => {
             const payload = {
                 key: (new URL(ws.url().toString())).hostname.toString(),
                 headers: {
-                    'url': ws.url().toString(),                        
+                    'url': ws.url()?.toString(),
+                    'ts': Date.now().toString()
                 },
+                acks: 0,
                 value: event.payload,
             };
             await producer.send({
@@ -20,7 +22,7 @@ const app = async (producer: Producer,topic:string ,url_page: string) => {
             });
             logger.info(JSON.stringify(payload))
         });
-        ws.on('close', () =>logger.info('WebSocket closed'));
+        ws.on('close', () => logger.info('WebSocket closed'));
     });
     await page.goto(url_page);
 }

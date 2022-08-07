@@ -7,7 +7,6 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
-
   kafka:
     image: confluentinc/cp-kafka:latest    
     hostname: 'kafka'
@@ -24,7 +23,21 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-
+  control-center:
+    image: confluentinc/cp-enterprise-control-center:7.0.5
+    hostname: control-center
+    depends_on:
+      - kafka
+    ports:
+      - "9021:9021"
+    environment:
+      CONTROL_CENTER_BOOTSTRAP_SERVERS: "kafka:29092"
+      CONTROL_CENTER_REPLICATION_FACTOR: 1
+      PORT: 9021
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+    networks:
+      - broker-kafka
   kafdrop:
     image: obsidiandynamics/kafdrop:latest
     networks: 
@@ -46,7 +59,7 @@ services:
       broker: kafka
       broker_port: 29092
       topic: 'framereceived'
-      url_page: "#"
+      url_page: "https://blaze.com/pt/games/crash"
     networks:
       - broker-kafka
     depends_on:
@@ -61,7 +74,27 @@ services:
       - ./data/postgres/pgdata:/var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
-      
+    networks:
+      - broker-kafka
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - broker-kafka
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/    
+    networks:
+      - broker-kafka
 networks: 
   broker-kafka:
     driver: bridge  
